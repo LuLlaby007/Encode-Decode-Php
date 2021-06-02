@@ -19,7 +19,7 @@
  <option value="gzinflatew">str_rot13-convert_uu-url-gzinflate-str_rot13-base64-convert_uu-gzinflate-url-str_rot13-gzinflate-base64</option>
  <option value="str">str_rot13 - gzinflate - str_rot13 - base64</option>
  <option value="hub">htmlspecialchars - url - base64</option>
- <option value="bgg">base - gzuncom - gzin</option>
+ <option value="bgg">gzun - gzun - gzinflate - gzinflate - gzinflate - base64</option>
  <option value="url">base64 - gzinflate - str_rot13 - convert_uu - gzinflate - base64</option>
  </center>
  </select>
@@ -48,6 +48,7 @@
  break;case 'ur' : $codi=convert_uuencode($text);
  break;case 'url' : $codi=base64_encode(gzdeflate(convert_uuencode(str_rot13(gzdeflate(base64_encode($text))))));
  break;case 'hub' : $codi=htmlspecialchars(rawurlencode(base64_encode($text)));
+ break;case 'bgg' : $codi=gzcompress(gzcompress(gzdeflate(gzdeflate(gzdeflate(base_64encode($text))))));
  break;default:break;}}
 
  $submit = $_POST['submits'];
@@ -66,7 +67,7 @@
  break;case 'ur' : $codi=convert_uudecode($text);
  break;case 'url' : $codi=base64_decode(gzinflate(str_rot13(convert_uudecode(gzinflate(base64_decode(($text)))))));
  break;case 'hub' : $codi=htmlspecialchars_decode(rawurldecode(base64_decode($text)));
- break;case 'bgg' : $codi=gzuncompress(gzuncompress(gzinflate(gzinflate(gzinflate(base64_decode(strrev($text)))))));
+ break;case 'bgg' : $codi=gzuncompress(gzuncompress(gzinflate(gzinflate(gzinflate(base64_decode($text))))));
  break;default:break;}}
  $html = htmlentities(stripslashes($codi));
  echo "<form><textarea cols=60 rows=10 class='form-control con7' >".$html."</textarea></center></form><br/><br/>";
